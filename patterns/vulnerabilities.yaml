@@ -1,0 +1,11 @@
+- id: "python-eval"
+  message: "Use of eval() is dangerous"
+  pattern: "eval("
+  severity: "high"
+  tags: ["injection", "eval"]
+
+- id: "python-hardcoded-password"
+  message: "Hardcoded password found"
+  pattern: "password = "
+  severity: "medium"
+  tags: ["auth", "secrets"]
