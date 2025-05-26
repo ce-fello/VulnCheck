@@ -2,10 +2,38 @@
   message: "Use of eval() is dangerous"
   pattern: "eval("
   severity: "high"
-  tags: ["injection", "eval"]
+  tags: ["eval", "code-execution"]
 
-- id: "python-hardcoded-password"
-  message: "Hardcoded password found"
-  pattern: "password = "
-  severity: "medium"
-  tags: ["auth", "secrets"]
+- id: "python-sql-injection"
+  message: "Possible SQL injection via unsanitized user input"
+  pattern: "SELECT.*\" \\+"
+  pattern_type: regex
+  severity: "high"
+  tags: ["sql", "injection"]
+
+- id: "python-xss"
+  message: "Direct rendering of user input can lead to XSS"
+  pattern: "return .*user_input"
+  pattern_type: regex
+  severity: "high"
+  tags: ["xss", "html"]
+
+- id: "python-open-user-input"
+  message: "Opening files based on user input can lead to path traversal"
+  pattern: "open\\(user_input"
+  pattern_type: regex
+  severity: "high"
+  tags: ["file", "traversal"]
+
+- id: "python-subprocess-shell"
+  message: "Shell=True with user input is dangerous"
+  pattern: "subprocess.Popen\\(user_input.*shell=True"
+  pattern_type: regex
+  severity: "high"
+  tags: ["command", "injection"]
+
+- id: "python-exec"
+  message: "Use of exec() is dangerous"
+  pattern: "exec("
+  severity: "high"
+  tags: ["exec", "code-execution"]
