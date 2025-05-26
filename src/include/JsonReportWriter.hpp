@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include <Report/json.hpp>
+#include <json.hpp>
 #include <MatchResult.hpp>
 
 class JsonReportWriter {

@@ -1,7 +1,7 @@
 #include "Analyzer.hpp"
 #include "PatternLoader.hpp"
-#include "utils/AnsiColor.hpp"
-#include "Report/JsonReportWriter.hpp"
+#include "AnsiColor.hpp"
+#include "JsonReportWriter.hpp"
 
 #include <iostream>
 #include <string>
