@@ -19,12 +19,12 @@ file(GLOB_RECURSE SRC_FILES
     src/*.hpp
 )
 
-add_executable(sast-analyzer ${SRC_FILES})
-target_link_libraries(sast-analyzer PRIVATE yaml-cpp)
+add_executable(vulncheck ${SRC_FILES})
+target_link_libraries(vulncheck PRIVATE yaml-cpp)
 
 if(fmt_FOUND)
-    target_link_libraries(sast-analyzer PRIVATE fmt::fmt)
-    target_compile_definitions(sast-analyzer PRIVATE USE_FMT)
+    target_link_libraries(vulncheck PRIVATE fmt::fmt)
+    target_compile_definitions(vulncheck PRIVATE USE_FMT)
 endif()
 
 if(BUILD_TESTING)

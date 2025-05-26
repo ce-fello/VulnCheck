@@ -56,6 +56,6 @@ def pay():
         
         {% block content %}
             Hi, {{username}}. Your basket successfully paid!
-            <a href="{{ return_url }}">back to previous page</a> # Гипотетический фишинг через подмену ссылки
+            <a href="{{ return_url }}">back to previous page</a>
         {% endblock %}
         ''', username=g['username'], return_url=return_url)
