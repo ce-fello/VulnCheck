@@ -1,39 +1,77 @@
 - id: "python-eval"
   message: "Use of eval() is dangerous"
-  pattern: "eval("
+  pattern: "\\beval\\s*\\("
+  type: regex
   severity: "high"
   tags: ["eval", "code-execution"]
 
 - id: "python-sql-injection"
   message: "Possible SQL injection via unsanitized user input"
-  pattern: "SELECT.*\" \\+"
-  pattern_type: regex
+  pattern: "(SELECT|INSERT|UPDATE|DELETE)[^\\n]*\\+"
+  type: regex
   severity: "high"
   tags: ["sql", "injection"]
 
 - id: "python-xss"
   message: "Direct rendering of user input can lead to XSS"
-  pattern: "return .*user_input"
-  pattern_type: regex
+  pattern: "return\\s+.*\\b(user_input|request\\.[a-z_]+)\\b"
+  type: regex
   severity: "high"
   tags: ["xss", "html"]
 
 - id: "python-open-user-input"
   message: "Opening files based on user input can lead to path traversal"
-  pattern: "open\\(user_input"
-  pattern_type: regex
+  pattern: "open\\s*\\(\\s*user_input"
+  type: regex
   severity: "high"
   tags: ["file", "traversal"]
 
 - id: "python-subprocess-shell"
   message: "Shell=True with user input is dangerous"
-  pattern: "subprocess.Popen\\(user_input.*shell=True"
-  pattern_type: regex
+  pattern: "subprocess\\.Popen\\s*\\(.*user_input.*shell\\s*=\\s*True"
+  type: regex
   severity: "high"
   tags: ["command", "injection"]
 
 - id: "python-exec"
   message: "Use of exec() is dangerous"
-  pattern: "exec("
+  pattern: "\\bexec\\s*\\("
+  type: regex
   severity: "high"
   tags: ["exec", "code-execution"]
+
+- id: insecure-tempfile
+  message: "Insecure use of predictable /tmp path"
+  pattern: "/tmp/[^\"'\s]+"  # файл в /tmp
+  type: regex
+  severity: medium
+  tags: ["filesystem", "insecure-temp"]
+
+- id: unsafe-yaml-load
+  message: "Unsafe yaml.load() without Loader"
+  pattern: "yaml\.load\s*\(\s*open\s*\("
+  type: regex
+  severity: medium
+  tags: ["yaml", "deserialization"]
+
+- id: open-redirect
+  message: "Possible open redirect via unvalidated URL"
+  pattern: "redirect\s*\(\s*\w+\s*\)"
+  type: regex
+  severity: medium
+  tags: ["redirect", "open-redirect"]
+
+- id: reflected-xss-concat
+  message: "Concatenation of input into HTML — potential reflected XSS"
+  pattern: "print\s*\(\s*\"[^\"]*\"\s*\+\s*\w+"
+  type: regex
+  severity: low
+  tags: ["xss", "reflected"]
+
+- id: reflected-xss-format
+  message: "Potential XSS using f-strings"
+  pattern: "print\s*\(\s*f\".*\{.*\}.*\"\s*\)"
+  type: regex
+  severity: low
+  tags: ["xss", "reflected"]
+

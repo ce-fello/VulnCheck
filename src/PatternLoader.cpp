@@ -1,26 +1,36 @@
 #include "PatternLoader.hpp"
+#include <fstream>
 #include <yaml-cpp/yaml.h>
+#include <iostream>
 
-PatternType parsePatternType(const YAML::Node& node) {
-    if (node["pattern_type"] && node["pattern_type"].as<std::string>() == "regex") {
-        return PatternType::Regex;
-    }
-    return PatternType::Plain;
-}
-
-std::vector<VulnerabilityPattern> PatternLoader::loadFromFile(const std::string& filepath) {
-    YAML::Node root = YAML::LoadFile(filepath);
+std::vector<VulnerabilityPattern> PatternLoader::loadPatterns(const std::string& filepath) {
     std::vector<VulnerabilityPattern> patterns;
 
-    for (const auto& node : root) {
-        VulnerabilityPattern p;
-        p.id = node["id"].as<std::string>();
-        p.message = node["message"].as<std::string>();
-        p.pattern = node["pattern"].as<std::string>();
-        p.type = parsePatternType(node);
-        if (node["severity"]) p.severity = node["severity"].as<std::string>();
-        if (node["tags"]) p.tags = node["tags"].as<std::vector<std::string>>();
-        patterns.push_back(p);
+    try {
+        YAML::Node config = YAML::LoadFile(filepath);
+        if (!config.IsSequence()) {
+            std::cerr << "Invalid pattern file format: expected a sequence\n";
+            return patterns;
+        }
+
+        for (const auto& node : config) {
+            VulnerabilityPattern pattern;
+            pattern.id = node["id"] ? node["id"].as<std::string>() : "";
+            pattern.message = node["message"] ? node["message"].as<std::string>() : "";
+            pattern.pattern = node["pattern"] ? node["pattern"].as<std::string>() : "";
+            pattern.type = node["type"] ? node["type"].as<std::string>() : "plain";
+            pattern.severity = node["severity"] ? node["severity"].as<std::string>() : "low";
+
+            if (node["tags"] && node["tags"].IsSequence()) {
+                for (const auto& tag : node["tags"]) {
+                    pattern.tags.push_back(tag.as<std::string>());
+                }
+            }
+
+            patterns.push_back(pattern);
+        }
+    } catch (const YAML::Exception& e) {
+        std::cerr << "Error parsing YAML file: " << e.what() << std::endl;
     }
 
     return patterns;

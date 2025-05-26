@@ -13,8 +13,8 @@ TEST_CASE("Analyzer detects both plain and regex patterns") {
     file.close();
 
     std::vector<VulnerabilityPattern> patterns = {
-        {"test-eval", "Dangerous eval", "eval(", PatternType::Plain, "high", {"code-execution"}},
-        {"test-sql", "SQL injection", "SELECT.*\\+.*", PatternType::Regex, "high", {"sql"}}
+        {"test-eval", "Dangerous eval", "eval(", "plain", "high", {"code-execution"}},
+        {"test-sql", "SQL injection", "SELECT.*\\+.*", "regex", "high", {"sql"}}
     };
 
     auto results = Analyzer::analyzeFile(testFile, patterns);

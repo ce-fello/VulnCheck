@@ -7,13 +7,15 @@ TEST_CASE("PatternLoader loads YAML patterns correctly") {
     std::string yamlData = R"(
 - id: "test-eval"
   message: "Use of eval() is dangerous"
-  pattern: "eval("
+  pattern: "\\beval\\s*\\("
+  type: regex
   severity: "high"
-  tags: ["code-execution"]
+  tags: ["eval", "code-execution"]
+
 - id: "test-sql"
-  message: "SQL injection"
-  pattern: "SELECT.*\" \\+"
-  pattern_type: regex
+  message: "Possible SQL injection via unsanitized user input"
+  pattern: "(SELECT|INSERT|UPDATE|DELETE)[^\\n]*\\+"
+  type: regex
   severity: "high"
   tags: ["sql", "injection"]
 )";
@@ -24,10 +26,10 @@ TEST_CASE("PatternLoader loads YAML patterns correctly") {
     out << yamlData;
     out.close();
 
-    auto patterns = PatternLoader::loadFromFile(tmpFile);
+    auto patterns = PatternLoader::loadPatterns(tmpFile);
     CHECK(patterns.size() == 2);
     CHECK(patterns[0].id == "test-eval");
-    CHECK(patterns[1].type == PatternType::Regex);
+    CHECK(patterns[1].type == "regex");
     CHECK(patterns[1].severity == "high");
 
     std::remove(tmpFile.c_str());

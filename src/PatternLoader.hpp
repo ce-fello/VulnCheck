@@ -1,9 +1,9 @@
 #pragma once
-#include "VulnerabilityPattern.hpp"
 #include <string>
 #include <vector>
+#include "VulnerabilityPattern.hpp"
 
 class PatternLoader {
 public:
-    static std::vector<VulnerabilityPattern> loadFromFile(const std::string& filepath);
+    static std::vector<VulnerabilityPattern> loadPatterns(const std::string& filepath);
 };

@@ -6,4 +6,7 @@ struct MatchResult {
     int line;
     std::string id;
     std::string message;
+    std::string severity;
+    std::string codeLine;
+    std::pair<size_t, size_t> highlightRange;
 };
