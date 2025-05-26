@@ -42,35 +42,35 @@
 
 - id: insecure-tempfile
   message: "Insecure use of predictable /tmp path"
-  pattern: "/tmp/[^\"'\s]+"  # файл в /tmp
+  pattern: "/tmp/[^\"'\\s]+"
   type: regex
   severity: medium
   tags: ["filesystem", "insecure-temp"]
 
 - id: unsafe-yaml-load
   message: "Unsafe yaml.load() without Loader"
-  pattern: "yaml\.load\s*\(\s*open\s*\("
+  pattern: "yaml\\.load\\s*\\(\\s*open\\s*\\("
   type: regex
   severity: medium
   tags: ["yaml", "deserialization"]
 
 - id: open-redirect
   message: "Possible open redirect via unvalidated URL"
-  pattern: "redirect\s*\(\s*\w+\s*\)"
+  pattern: "redirect\\s*\\(\\s*\\w+\\s*\\)"
   type: regex
   severity: medium
   tags: ["redirect", "open-redirect"]
 
 - id: reflected-xss-concat
   message: "Concatenation of input into HTML — potential reflected XSS"
-  pattern: "print\s*\(\s*\"[^\"]*\"\s*\+\s*\w+"
+  pattern: "print\\s*\\(\\s*\"[^\"]*\"\\s*\\+\\s*\\w+"
   type: regex
   severity: low
   tags: ["xss", "reflected"]
 
 - id: reflected-xss-format
   message: "Potential XSS using f-strings"
-  pattern: "print\s*\(\s*f\".*\{.*\}.*\"\s*\)"
+  pattern: "print\\s*\\(\\s*f\".*\\{.*\\}.*\"\\s*\\)"
   type: regex
   severity: low
   tags: ["xss", "reflected"]
