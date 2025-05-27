@@ -10,6 +10,17 @@
 
 namespace fs = std::filesystem;
 
+/**
+ * @brief Entry point of the static analysis tool.
+ * 
+ * Parses command-line arguments, loads vulnerability patterns,
+ * performs analysis on a file or recursively on a directory,
+ * and outputs results to the terminal or a JSON report.
+ * 
+ * @param argc Argument count.
+ * @param argv Argument vector.
+ * @return int Exit code: 0 on success, non-zero on failure.
+ */
 int main(int argc, char* argv[]) {
     if (argc < 3) {
         std::cerr << "Usage: sast-analyzer <pattern_file> <source_file_or_dir> [--json|-j] [--output <filename>] [--recursive|-r]\n";

@@ -3,6 +3,15 @@
 #include <yaml-cpp/yaml.h>
 #include <iostream>
 
+/**
+ * @brief Loads vulnerability patterns from a YAML file.
+ * 
+ * Parses the specified YAML file, reads each vulnerability definition,
+ * and converts it into a `VulnerabilityPattern` object.
+ * 
+ * @param filepath Path to the YAML configuration file.
+ * @return std::vector<VulnerabilityPattern> List of loaded patterns.
+ */
 std::vector<VulnerabilityPattern> PatternLoader::loadPatterns(const std::string& filepath) {
     std::vector<VulnerabilityPattern> patterns;
 

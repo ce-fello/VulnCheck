@@ -2,6 +2,16 @@
 #include <fstream>
 #include <regex>
 
+/**
+ * @brief Analyzes a file line by line using provided vulnerability patterns.
+ * 
+ * Each line is scanned for both plain-text and regex-based patterns. When a match is found,
+ * the result is recorded with associated metadata including file, line number, severity, and code snippet.
+ * 
+ * @param filepath Path to the source file to be analyzed.
+ * @param patterns List of vulnerability patterns to search for.
+ * @return std::vector<MatchResult> List of all found vulnerability matches.
+ */
 std::vector<MatchResult> Analyzer::analyzeFile(const std::string& filepath, const std::vector<VulnerabilityPattern>& patterns) {
     std::vector<MatchResult> results;
     std::ifstream file(filepath);
