@@ -81,7 +81,8 @@ cmake .. && make
 
 ## Структура проекта  
 ```  
-vulncheck/  
+vulncheck/
+├── docs/          # Документация
 ├── external/          # Зависимости (doctest, json, yaml-cpp)
 ├── patterns/          # Встроенные YAML-шаблоны уязвимостей
 ├── src/               # Исходный код анализатора
