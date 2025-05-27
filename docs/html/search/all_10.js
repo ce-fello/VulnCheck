@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['tags_0',['tags',['../structVulnerabilityPattern.html#a1be2937774cea70dbb4516344b9dfb9b',1,'VulnerabilityPattern']]],
+  ['test_5fanalyzer_2ecpp_1',['test_analyzer.cpp',['../test__analyzer_8cpp.html',1,'']]],
+  ['test_5fcase_2',['test_case',['../test__analyzer_8cpp.html#a5bb8e0d34dd8ccd0a7153845aadff6a9',1,'TEST_CASE(&quot;Analyzer detects regex pattern&quot;):&#160;test_analyzer.cpp'],['../test__analyzer_8cpp.html#aab0ef2926d02bac34ffd104e946855ba',1,'TEST_CASE(&quot;Analyzer detects plain pattern&quot;):&#160;test_analyzer.cpp'],['../test__analyzer_8cpp.html#a2e26336696d44f3003b4bef424c9a197',1,'TEST_CASE(&quot;Analyzer handles no matches&quot;):&#160;test_analyzer.cpp'],['../test__analyzer_8cpp.html#a1389546a8c702bcc324697cea46ab6ab',1,'TEST_CASE(&quot;Analyzer detects multiple vulnerabilities&quot;):&#160;test_analyzer.cpp'],['../test__analyzer_8cpp.html#a1b9b0719bc917e8272d2cb64eb733d2f',1,'TEST_CASE(&quot;Analyzer handles empty file&quot;):&#160;test_analyzer.cpp'],['../test__json__report__writer_8cpp.html#aa1b710b0e0f355cf03b5c866e58025da',1,'TEST_CASE(&quot;JsonReportWriter writes a valid JSON report&quot;):&#160;test_json_report_writer.cpp'],['../test__pattern__loader_8cpp.html#a8b498095a2deb09c7c3ae9136b47db6b',1,'TEST_CASE(&quot;PatternLoader loads valid YAML patterns&quot;):&#160;test_pattern_loader.cpp']]],
+  ['test_5fjson_5freport_5fwriter_2ecpp_3',['test_json_report_writer.cpp',['../test__json__report__writer_8cpp.html',1,'']]],
+  ['test_5fmain_2ecpp_4',['test_main.cpp',['../test__main_8cpp.html',1,'']]],
+  ['test_5fpattern_5floader_2ecpp_5',['test_pattern_loader.cpp',['../test__pattern__loader_8cpp.html',1,'']]],
+  ['type_6',['type',['../structVulnerabilityPattern.html#aab30720bdecf06d7d1aea0b451acb795',1,'VulnerabilityPattern']]]
+];
